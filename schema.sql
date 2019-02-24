@@ -76,7 +76,7 @@ CREATE TABLE IF NOT EXISTS meal_order (
     client_id INT DEFAULT NULL,  
 
     INDEX idx_order_status (status),
-    INDEX idx_order_datetime_paid_at (datetime_paid_at),
+    INDEX idx_order_datetime_paid_at (payment_datetime),
 
     FOREIGN KEY (payment_method_id) REFERENCES payment_method(id),
     FOREIGN KEY (waiter_id) REFERENCES waiter(id),
