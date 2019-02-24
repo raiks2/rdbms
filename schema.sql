@@ -73,7 +73,7 @@ CREATE TABLE IF NOT EXISTS meal_order (
     created_at DATETIME NOT NULL DEFAULT CURRENT_TIMESTAMP,
     payment_method_id INT NOT NULL,
     waiter_id INT NOT NULL,
-    client_id INT NOT NULL,  
+    client_id INT DEFAULT NULL,  
 
     INDEX idx_order_status (status),
     INDEX idx_order_datetime_paid_at (datetime_paid_at),
