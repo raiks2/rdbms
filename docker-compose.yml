@@ -1,0 +1,24 @@
+version: "3.3"
+
+services:
+  restaurant:
+    container_name: ${CONTAINER_NAME}
+    image: mysql:8
+    restart: always
+    environment:
+      MYSQL_DATABASE: ${DB_NAME}
+      MYSQL_USER: ${DB_USER}
+      MYSQL_PASSWORD: ${DB_PASSWORD}
+      MYSQL_ROOT_PASSWORD: ${DB_PASSWORD}
+    networks:
+      - db_shared
+    volumes:
+      - "./db:/var/lib/mysql"
+      - "./dump:/docker-entrypoint-initdb.d"
+    ports:
+      - 127.0.0.1:6306:3306
+
+networks:
+  db_shared:
+    driver: bridge
+      
