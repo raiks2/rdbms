@@ -1,7 +1,7 @@
 version: "3.3"
 
 services:
-  restaurant:
+  rest-mysql:
     container_name: ${CONTAINER_NAME}
     image: mysql:8
     restart: always
