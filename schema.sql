@@ -17,8 +17,8 @@ CREATE TABLE IF NOT EXISTS client_discount (
     id int NOT NULL AUTO_INCREMENT PRIMARY KEY,
     discount DECIMAL(9,2) NOT NULL DEFAULT 0.00,
     is_relative BOOLEAN NOT NULL DEFAULT false,
-    datetime_start_at DATETIME NOT NULL DEFAULT CURRENT_TIMESTAMP,
-    datetime_end_at DATETIME DEFAULT NULL,
+    created_datetime DATETIME NOT NULL DEFAULT CURRENT_TIMESTAMP,
+    closed_datetime DATETIME DEFAULT NULL,
     client_id INT,
 
     FOREIGN KEY (client_id) REFERENCES client(id)   
@@ -55,8 +55,8 @@ CREATE TABLE IF NOT EXISTS dish_discount (
     id int NOT NULL AUTO_INCREMENT PRIMARY KEY,
     discount DECIMAL(9,2) NOT NULL DEFAULT 0.00,
     is_relative BOOLEAN NOT NULL DEFAULT false,
-    datetime_start_at DATETIME NOT NULL DEFAULT CURRENT_TIMESTAMP,
-    datetime_end_at DATETIME DEFAULT NULL,
+    created_datetime DATETIME NOT NULL DEFAULT CURRENT_TIMESTAMP,
+    closed_datetime DATETIME DEFAULT NULL,
     dish_id INT,
 
     FOREIGN KEY (dish_id) REFERENCES dish(id)   
@@ -68,9 +68,9 @@ CREATE TABLE IF NOT EXISTS meal_order (
     total_amount DECIMAL(9,2) NOT NULL DEFAULT 0.00,
     tips DECIMAL(9,2) NOT NULL DEFAULT 0.00,
     status ENUM('accepted', 'paid', 'ready') NOT NULL DEFAULT 'accepted',
-    datetime_paid_at DATETIME DEFAULT NULL,
-    updated_at DATETIME NOT NULL DEFAULT CURRENT_TIMESTAMP ON UPDATE CURRENT_TIMESTAMP,
-    created_at DATETIME NOT NULL DEFAULT CURRENT_TIMESTAMP,
+    payment_datetime DATETIME DEFAULT NULL,
+    modified_datetime DATETIME NOT NULL DEFAULT CURRENT_TIMESTAMP ON UPDATE CURRENT_TIMESTAMP,
+    created_datetime DATETIME NOT NULL DEFAULT CURRENT_TIMESTAMP,
     payment_method_id INT NOT NULL,
     waiter_id INT NOT NULL,
     client_id INT DEFAULT NULL,  
